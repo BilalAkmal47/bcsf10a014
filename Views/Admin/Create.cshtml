@@ -80,12 +80,12 @@
                     @Html.EditorFor(model => model.address)
                     @Html.ValidationMessageFor(model => model.address)
                 </div>
-
+                <input type="hidden" name="balance" value="200" />
                 <p>
                     <input type="submit" value="Create" />
                 </p>
             </fieldset>
-        }            
+        }
         <a href="/Admin/GetList">Back
         </a>
     </div>
