@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/themes/base/minified/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.0.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+
+
+    <script>
+        $(document).ready(function () {
+            $('#this-carousel-id').carousel({
+                interval: 2000, cycle: true
+            });
+        });
+    </script>
+</head>
+<body>
+    <header class="navbar navbar-default navbar-inverse" role="navigation">
+        <a class="navbar-brand" href="#">My Bank</a>
+        <ul class="nav navbar-nav pull-right">
+            @if (Convert.ToInt16(Session["key"]) == 1)
+            {
+                <li><a href="/User/Index/@Convert.ToInt16(Session["uid"])">View Profile </a></li>
+                <li><a href="~/User/Transection">Funds Transfer</a> </li>
+                <li><a href="~/User/History/@Convert.ToInt16(Session["uid"])">View History</a> </li>
+                <li><a href="~/User/Paybill">Pay Bills</a> </li>
+                <li><a href="~/User/Statement/@Convert.ToInt16(Session["uid"])">View Statement </a></li>
+                <li>
+                    <form method="post" action="/User/Logout">
+                        <button class="btn btn-warning pull-right">Logout</button>
+                    </form>
+                </li>
+            }
+            else if (Convert.ToInt16(Session["key"]) == 2)
+            {
+                <li><a href="~/Admin/Create">Create User</a></li>
+                <li><a href="~/Admin/GetList">List Users</a> </li>
+                <li>
+                    <form method="post" action="/User/Logout">
+                        <button class="btn btn-warning pull-right">Logout</button>
+                    </form>
+                </li>
+           
+            }
+            else
+            {
+                <li><a href="~/Home">Home </a></li>
+                <li><a href="~/Home/About">About</a> </li>
+                <li><a href="~/Home/Contact">Contact</a> </li>
+                <li>
+                    <div class="pull-right">
+                        <button class="btn btn-success" data-toggle="modal" data-target="#signup">SignUp</button><a> </a>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#login">Login</button>
+                    </div>
+                </li>
+            }
+        </ul>
+    </header>
+    <div class="row">
+        <div class="col-md-2" style="margin-top: 30px">
+            <div class="well nav nav-stacked">
+                <ul>
+                    <li><a class="h4">My Bank</a></li>
+                    @if (Convert.ToInt16(Session["key"]) == 1)
+                    {
+                        <li><a href="/User/Index/@Convert.ToInt16(Session["uid"])">View Profile </a></li>
+                        <li><a href="~/User/Transection">Funds Transfer</a> </li>
+                        <li><a href="~/User/History/@Convert.ToInt16(Session["uid"])">View History</a> </li>
+                        <li><a href="~/User/Paybill">Pay Bills</a> </li>
+                        <li><a href="~/User/Statement/@Convert.ToInt16(Session["uid"])">View Statement </a></li>
+        
+                    }
+                    else if (Convert.ToInt16(Session["key"]) == 2)
+                    {
+                        <li><a href="~/Admin/Create">Create User</a></li>
+                        <li><a href="~/Admin/GetList">List Users</a> </li>           
+                    }
+                    else
+                    {
+                        <li><a href="~/Home">Home</a></li>
+                        <li><a href="~/Home/About">About</a></li>
+                        <li><a href="~/Home/Contact">Contact</a></li>                        
+                    
+                    }
+                </ul>
+            </div>
+        </div>
+        @RenderBody()
+    </div>
+    <footer class="navbar navbar-inverse navbar-fixed-bottom" style="text-align: center; color: white">
+        Copyrights © MyBank 2014, All Rights Reserved.
+    </footer>
+    <!--Login Modal-->
+
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Login Information</h4>
+        </div>
+        <form method="post" action="/Home/Login">
+            <div class="modal-body">
+                <label>User Name</label>
+                <input type="text" name="userName" required=""/>
+                <label>Password</label>
+                <input type="password" name="password" required=""/>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                <button type="submit" class="btn btn-success">Login</button>
+            </div>
+        </form>
+    </div>
+    <!--Signup Modal-->
+    <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Personal Information</h4>
+        </div>
+        <form method="post" action="/Home/Save">
+            <div class="modal-body">
+                <label>Name</label>
+                <input type="text" name="name" required=""/>
+                <label>User Name</label>
+                <input type="text" id="UserName" name="userName" required=""/>
+                <button type="button" class="btn pull-right" id="b1" value="Check">Check</button>
+                <div id="result"></div>
+                <label>Password</label>
+                <input type="password" name="password" required=""/>
+                <label>Account No.</label>
+                <input type="text" name="accountNo" required=""/>
+                <label>Contact No. </label>
+                <input type="text" name="contactNo" required=""/>
+                <label>Address</label>
+                <input type="text" name="address" required=""/>
+                <input type="hidden" name="balance" value="200" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                <button type="submit" class="btn btn-success">Sign Up</button></>
+            </div>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#b1').click(function () {
+                var userName = $('#UserName').val();
+                $('#checking').remove();
+                $.getJSON("/home/CheckUserName?UserName=" + userName, function (data) {
+                    if (data) {
+                        $('#result').append("<p id='checking' class='text-error'>User Name is not Available</p>");
+                    }
+                    else {
+                        $('#result').append("<p id='checking' class='text-success'>Available</p>");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

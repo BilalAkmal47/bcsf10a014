@@ -1,0 +1,52 @@
+﻿@model IEnumerable<My_Bank.Models.transection>
+
+@{
+    ViewBag.Title = "Statement";
+}
+
+<div id="container">
+    <div id="leave" class="col-md-3">
+    </div>
+    <div id="startContainer" class="col-md-9">
+        <h2>Statement</h2>
+
+        <table class="table">
+
+            <tr>
+                <th>
+                    @Html.DisplayName("Operation")
+                </th>
+                <th>
+                    @Html.DisplayName("Amount")
+                </th>
+                <th>
+                    @Html.DisplayName("Date")
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.sender == Convert.ToInt16(Session["uid"]))
+                        {
+                            <p>Withdrawl / Sent</p>
+                        }
+                        else if (item.receiver == Convert.ToInt16(Session["uid"]))
+                        {
+                            <p>Deposite / Received</p>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date)
+                    </td>
+                </tr>
+            }
+        </table>
+        <a href="/User/Index/@Convert.ToInt16(Session["uid"])">Back
+        </a>
+    </div>
+</div>

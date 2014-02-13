@@ -1,0 +1,51 @@
+﻿@model IEnumerable<My_Bank.Models.transection>
+@{
+    ViewBag.Title = "History";
+}
+<div id="container">
+    <div id="leave" class="col-md-3">
+    </div>
+    <div id="startContainer" class="col-md-9">
+        <h2>Transection's History</h2>
+        <table class="table">
+
+            <tr>
+                <th>
+                    @Html.DisplayName("Transfer From")
+                </th>
+                <th>
+                    @Html.DisplayName("Transfer to")
+                </th>
+                <th>
+                    @Html.DisplayName("Amount")
+                </th>
+                <th>
+                    @Html.DisplayName("Date")
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.receiver)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date)
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <p>
+            <a href="/User/Index/@Convert.ToInt16(Session["uid"])">Back
+            </a>
+        </p>
+    </div>
+</div>

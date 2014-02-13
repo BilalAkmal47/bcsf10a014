@@ -1,0 +1,56 @@
+﻿@model My_Bank.Models.users
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="container">
+    <div id="leave" class="col-md-1">
+    </div>
+    <div id="startContainer" class="col-md-10">
+        <h3>Welcom</h3>
+       
+        <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayName("Account Title")
+                    </th>
+                    <th>
+                        @Html.DisplayName("User Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Address")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Contact #")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Account #")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Amount")
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.userName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.accountNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.contactNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.balance)
+                    </td>
+                </tr>
+            </table>                        
+    </div>
+</div>

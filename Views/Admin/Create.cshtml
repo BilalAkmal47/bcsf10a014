@@ -1,0 +1,92 @@
+﻿@model My_Bank.Models.users
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+        $('#b1').click(function () {
+            var userName = $('#UserName').val();
+            $('#checking').remove();
+            $.getJSON("/home/CheckUserName?UserName=" + userName, function (data) {
+                if (data) {
+                    $('#result').append("<p id='checking' class='text-error'>User Name is not Available</p>");
+                }
+                else {
+                    $('#result').append("<p id='checking' class='text-success'>Available</p>");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<div id="container">
+    <div id="leave" class="col-md-3">
+    </div>
+    <div id="startContainer" class="col-md-9">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>User Account</legend>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.name)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.name)
+                    @Html.ValidationMessageFor(model => model.name)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.userName)
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="UserName" name="userName" required="" />
+                    <button class="btn" id="b1" value="Check">Check</button>
+                    <div id="result"></div>
+                    @Html.ValidationMessageFor(model => model.userName)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.password)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.password)
+                    @Html.ValidationMessageFor(model => model.password)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.accountNo)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.accountNo)
+                    @Html.ValidationMessageFor(model => model.accountNo)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.contactNo)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.contactNo)
+                    @Html.ValidationMessageFor(model => model.contactNo)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.address)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.address)
+                    @Html.ValidationMessageFor(model => model.address)
+                </div>
+
+                <p>
+                    <input type="submit" value="Create" />
+                </p>
+            </fieldset>
+        }            
+        <a href="/Admin/GetList">Back
+        </a>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿@model My_Bank.Models.users
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+<div id="container">
+    <div id="leave" class="col-md-3">
+    </div>
+    <div id="startContainer" class="col-md-9">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>@Model.name's Account Information</legend>
+
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.name)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.name)
+                    @Html.ValidationMessageFor(model => model.name)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.userName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.userName)
+                    @Html.ValidationMessageFor(model => model.userName)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.password)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.password)
+                    @Html.ValidationMessageFor(model => model.password)
+                </div>
+                @Html.HiddenFor(model => model.accountNo)
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.contactNo)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.contactNo)
+                    @Html.ValidationMessageFor(model => model.contactNo)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.address)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.address)
+                    @Html.ValidationMessageFor(model => model.address)
+                </div>
+                @Html.HiddenFor(model => model.role)
+                <p>
+                    <input type="submit" value="Edit" />
+                </p>
+            </fieldset>
+        }
+
+        <div>
+            <a href="/Admin/GetList">Back
+            </a>
+        </div>
+
+    </div>
+</div>

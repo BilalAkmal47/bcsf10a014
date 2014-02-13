@@ -1,0 +1,53 @@
+﻿@model My_Bank.Models.transection
+@{
+    ViewBag.Title = "Paybill";
+}
+
+<h2>Pay Bills</h2>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#companyName").change(function () {
+
+            var countryId = $("#companyName").val();
+
+            $("#rec").append('<input type="hidden" name="receiver" value="' + countryId + '"/>');
+        });
+    });
+</script>
+<div id="container">
+    <div id="leave" class="col-md-3">
+    </div>
+    <div id="startContainer" class="col-md-9">
+
+        <form method="post" action="/User/Paybill">
+            <div class="modal-body">
+                <label>Choose Company</label>
+                <select id="companyName">
+                    <option value="0">Select Company
+                    </option>
+                    <option value="26">Mobilink
+                    </option>
+                    <option value="27">Telenor
+                    </option>
+                    <option value="28">Zong
+                    </option>
+                    <option value="29">Ufone
+                    </option>
+                </select>
+                <div id="rec"></div>
+                <label>Amount</label>
+                <input type="text" name="amount" />
+                <label>Sender</label>
+                <input type="text" name="sender" />
+
+            </div>
+
+            <div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </form>
+        <a href="/User/Index/@Convert.ToInt16(Session["uid"])">Back
+        </a>
+    </div>
+</div>

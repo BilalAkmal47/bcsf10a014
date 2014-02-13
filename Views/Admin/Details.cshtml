@@ -1,0 +1,65 @@
+﻿@model My_Bank.Models.users
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<div id="container">
+    <div id="leave" class="col-md-3">
+    </div>
+    <div id="startContainer" class="col-md-9">
+        <fieldset>
+            <legend>@Model.name Details</legend>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayName("Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("User Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Address")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Contact #")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Account #")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Balance")
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.userName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.accountNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.contactNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.balance)
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            <a href="/Admin/GetList">Back
+            </a>
+        </p>
+    </div>
+</div>

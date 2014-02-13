@@ -1,0 +1,45 @@
+﻿@model My_Bank.Models.transection
+@{
+    ViewBag.Title = "Transection";
+}
+
+<h2>Transection</h2>
+<div id="container">
+    <div id="leave" class="col-md-3">
+    </div>
+    <div id="startContainer" class="col-md-9">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>User's Info</legend>
+
+                <div class="editor-label">
+                    @Html.Label("Receiver AccNo")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.receiver)
+                    @Html.ValidationMessageFor(model => model.receiver)
+                </div>
+                <div class="editor-label">
+                    @Html.Label("Amount")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.amount)
+                    @Html.ValidationMessageFor(model => model.amount)
+                </div>
+                <div class="editor-field">
+                    <input type="hidden" name="sender" value="@Convert.ToInt16(Session["uid"])" />
+                </div>
+                <p>
+                    <input type="submit" value="Submit" />
+                </p>
+            </fieldset>
+        }
+            <a href="/User/Index/@Convert.ToInt16(Session["uid"])">Back
+            </a>
+      
+    </div>
+</div>

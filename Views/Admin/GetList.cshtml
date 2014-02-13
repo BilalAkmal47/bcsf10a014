@@ -1,0 +1,75 @@
+﻿@model IEnumerable<My_Bank.Models.users>
+@{
+    ViewBag.Title = "GetList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="container">
+    <div id="leave" class="col-md-3">
+    </div>
+    <div id="startContainer" class="col-md-9">
+        @if (Session["uid"] != null)
+        {
+            <h3>User's Account Information
+            </h3>
+            <table class="table">
+
+                <tr>
+                    <th>
+                        @Html.DisplayName("Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("User Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Address")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Contact #")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Account #")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Balance")
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.userName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.contactNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.accountNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.balance)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            <p>
+                @Html.ActionLink("Create New", "Create")
+                |
+            <a href="/Admin/Index/@Convert.ToInt16(Session["uid"])">Back
+            </a>
+            </p>
+        }
+    </div>
+</div>

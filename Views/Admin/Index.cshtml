@@ -1,0 +1,47 @@
+﻿@model My_Bank.Models.users
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div id="container">
+    <div id="leave" class="col-md-3">
+    </div>
+    <div id="startContainer" class="col-md-9">
+        <h3 class="h3">Welcom @Model.name</h3>
+        <p>
+            @Html.ActionLink("Create New", "Create", "Admin")
+        </p>
+        <p>
+            @Html.ActionLink("Generate List", "GetList", "Admin")
+        </p>
+    </div>
+    <div class="col-md-9">
+        <input type="text" id="UserName" name="userName" />
+        <button type="button" class="btn pull-right" id="b1" value="Search">Search</button>
+        <div id="r">
+            <table id="table1">
+
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+        $(document).ready(function () {
+            $('#b1').click(function () {
+                var userName = $('#UserName').val();
+                $('#checking').remove();
+                $.getJSON("/admin/getUser?UserName=" + userName, function (data) {
+                    alert(data);
+                    if (data) {
+                        $('#r').append("<p id='checking' class='text-error'>User Name is not Available</p>");
+                    }
+                    else {
+                      
+                        $('#table1').append("<th>Name</th><th>Username</th><th>Amount</th>");
+                        $("#table1").append("<tr><td>" + data.name + "</td><td>" + data.userName + "</td><td>" + data.balance + "</td></tr>");
+                    }
+                });
+            });
+        });
+    </script>
