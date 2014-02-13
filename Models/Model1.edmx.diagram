@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b147669ef509465abb903ca70513cff9" Name="Diagram1">
-        <EntityTypeShape EntityType="bankdbModel.transection" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="bankdbModel.users" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="bankdbModel.FK_transection_ToTable" ManuallyRouted="false" />
-        <AssociationConnector Association="bankdbModel.FK_transection_ToUsers" ManuallyRouted="false" />
+      <Diagram DiagramId="8d89125fe5e24de49a64f8fdc9139808" Name="Diagram1">
+        <EntityTypeShape EntityType="mybankModel.transection" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mybankModel.user" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="mybankModel.FK_transection_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="mybankModel.FK_transection_ToUser_1" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
